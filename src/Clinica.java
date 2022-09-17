@@ -19,7 +19,7 @@ public class Clinica {
         Cliente cliente = new Cliente(nome, cpf, telefone);
         listaClientes.add(cliente);
 
-        System.out.print("Cliente cadastrado com sucesso!");
+        System.out.println("Cliente cadastrado com sucesso!");
     }
 
     public void cadastrarMedico() {
@@ -51,6 +51,10 @@ public class Clinica {
     }
 
     public void cadastrarConsulta() {
+        System.out.println("=============================");
+        System.out.println("Médicos da clínica: ");
+        mostrarListaMedico();
+        System.out.println("=============================");
         System.out.print("Deseja cadastrar consulta com qual médico: ");
         String nome = teclado.readLine();
         for (Medico medicos: listaMedicos) {
@@ -63,13 +67,22 @@ public class Clinica {
                 System.out.print("Hora da consulta: ");
                 String horaConsulta = teclado.readLine();
                 System.out.println("=============================");
-                medicos.cadastrarConsulta(nomePaciente, horaConsulta, diaConsulta);
+                boolean val = medicos.validarAgenda(diaConsulta, horaConsulta);
+                if (val == false) {
+                    medicos.cadastrarConsulta(nomePaciente, horaConsulta, diaConsulta);
+                    System.out.println("Consulta marcada!");
+                } else {
+                    System.out.println("Este horário está ocupado! Marque sua consulta em outro dia ou horário");
+                }
                 
             }
         }
     }
 
     public void verificarAgenda() {
+        System.out.println("=============================");
+        System.out.println("Médicos da clínica: ");
+        mostrarListaMedico();
         System.out.println("=============================");
         System.out.print("Deseja verificar agenda de qual médico? ");
         String nome = teclado.readLine();

@@ -53,6 +53,27 @@ public class Medico {
         }
     }
 
+    public boolean validarAgenda(String diaConsulta, String horaConsulta) {
+        boolean val = false;
+        for (Agenda consultas: agendaMedico) {
+           /* System.out.println("=============================");
+            System.out.println("Paciente: " + consultas.getNomePaciente());
+            System.out.println("Dia da Consulta: " + consultas.getDiaConsulta());
+            System.out.println("Hora da Consulta: " + consultas.getHoraConsulta()); */
+            if (diaConsulta.equals(consultas.getDiaConsulta())) {
+                if (horaConsulta.equals(consultas.getHoraConsulta())) {
+                    val = true;
+                } else {
+                    val = false;
+                }
+            }  else {
+                val = false;
+            }
+             
+        }
+        return val;
+    }
+
     // ArrayList<Agenda> agendaMedico - Caso de errado voltar aqui
 
     public void cadastrarConsulta(String nomePaciente, String horaConsulta, String diaConsulta) {
